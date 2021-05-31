@@ -1,0 +1,6 @@
+CREATE TABLE tb_Utente (
+	email VARCHAR(100) PRIMARY KEY,
+	pwd VARCHAR(25) NOT NULL
+)
+
+ALTER TABLE tb_Utente ADD COLUMN preferiti VARCHAR(100)
