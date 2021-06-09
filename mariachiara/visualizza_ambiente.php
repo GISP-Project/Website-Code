@@ -22,7 +22,6 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <link rel="stylesheet" href="stile.css">
   </head>
   <body>
-    <!-- <?php require 'header.php'; ?> -->
     <main class="row">
         <?php
         if(!$session){
@@ -46,6 +45,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 						$row = $result->fetch_assoc();
 						echo "<h2>".$row['RagioneSociale']."</h2>";
 						echo "<a href='preferiti.php?IdPref=".$_SESSION['ID_AMBIENTE']."'><button class='bottone'>Aggiungi a Preferiti</button></a>";
+						echo "<a href='prenotazione.php?IdPren=".$_SESSION['ID_AMBIENTE']."&RagSocPren=".$row['RagioneSociale']."'><button class='bottone'>Prenota ingresso</button></a>";
 						echo "<table class='row'>";
 						echo "
 								<tr><th class='col-6'>Affollamento Real Time:</th><td class='col-6'>".$row['PresenzeRealTime']."</td></tr>
@@ -60,7 +60,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					}
 					
 					echo "<div class='centered'>".$row['GoogleMap']."</div>";
-					echo "<br/><a href='ambienti.php'><button class='bottone'>Back</button></a>";
+					echo "<br/><a href='gestione_ambiente.php'><button class='bottone'>Back</button></a>";
 					
 					/*echo '
 						<script>
@@ -74,6 +74,5 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
         }
         ?>
     </main>
-    <!-- <?php require 'footer.php'; ?> -->
   </body>
 </html>

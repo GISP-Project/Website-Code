@@ -69,8 +69,10 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					$pref = $result->fetch_assoc();
 					if (!isset($pref['preferiti'])) {
 						echo "<h4>Elenco preferiti vuoto.</h4>";
+						echo "<a href='gestione_ambiente.php'><button class='bottone'>Back</button></a>";
 					} elseif ($pref['preferiti'] == ""){
 						echo "<h4>Elenco preferiti vuoto.</h4>";
+						echo "<a href='gestione_ambiente.php'><button class='bottone'>Back</button></a>";
 					} else {
 						$lstPref = explode("#", $pref['preferiti']);
 						$firstItem = true;

@@ -8,7 +8,8 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 session_start();
 }
   unset($_SESSION['user']);
-  unset($_SESSION['nlibri']);
+  unset($_SESSION['ruolo']);
+  unset($_SESSION['RagioneSocialeEnte']);
  ?>
  <!DOCTYPE html>
  <html lang="it" >
@@ -27,7 +28,7 @@ session_start();
 
      <main class="row">
        <?php
-       if (!isset($_SESSION['user']) && !isset($_SESSION['nlibri'])) {
+       if (!isset($_SESSION['user']) && !isset($_SESSION['ruolo']) && !isset($_SESSION['RagioneSocialeEnte'])) {
         echo  "<div><h2> Il logout ha avuto successo e verrai reindirizzato alla home page del sito, se ciò non accade clicca sul bottone</h2>
                 </div>";
           echo '<script>

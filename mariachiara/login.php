@@ -58,9 +58,20 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
             }else{
                 $sql = "SELECT * FROM tb_utente WHERE email='".$username."' && pwd='".$password."'";
 				$result = $conn->query($sql);
+				$utente = $result->fetch_assoc();
 				
 				if ($result->num_rows > 0) {
 					$_SESSION['user']=$username;
+					$_SESSION['ruolo']=$utente['ruolo'];
+					
+					if ($_SESSION['ruolo'] == "ENTE") {
+						$sql = "SELECT * FROM tb_Ambiente WHERE emailEnte='".$_SESSION["user"]."'";
+						$result = $conn->query($sql);
+						$dati = $result->fetch_assoc();
+						$_SESSION['RagioneSocialeEnte'] = $dati["RagioneSociale"];
+					}
+					
+					
 					echo "<h2>Hai effettuato il login, per cambiare utente prima effettuare il logout.</h2>";
 					echo "<a href='home.php' title='Home' class='bottone'>Torna home >></a>";
 					echo '

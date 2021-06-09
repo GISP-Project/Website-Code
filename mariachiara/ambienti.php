@@ -23,7 +23,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 
   </head>
   <body>
-    <?php require 'header.php'; ?>
+    
     <main class="row">
 
         <?php
@@ -33,17 +33,57 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
                 echo "<p class='error'>Siamo spiacenti ma c'è stato un errore connessione al database: ".$conn->connect_error."</p>\n";
             else{
                 echo "<h2>I nostri ambienti associati</h2>";
-                echo "<h4>In questa sezione puoi vedere tutti gli ambienti associati a QUIKUEUE.</h4>";
+                echo "<h4>In questa sezione puoi vedere tutti gli ambienti associati a QUIKUEUE.</h4>";				
 
-                $sql = "SELECT * FROM tb_Ambiente";
+                $sql = "SELECT * FROM tb_Ambiente WHERE 1=1";
+				if (isset($_REQUEST['searchRagSoc']))
+					$sql = $sql." AND RagioneSociale LIKE '%".$_REQUEST['searchRagSoc']."%'";
+				if (isset($_REQUEST['searchCitta']))
+					$sql = $sql." AND Città LIKE '%".$_REQUEST['searchCitta']."%'";
+				if (isset($_REQUEST['searchProv']))
+					$sql = $sql." AND Provincia LIKE '%".$_REQUEST['searchProv']."%'";
+				if (isset($_REQUEST['TipoAmb'])) {
+					if ($_REQUEST['TipoAmb'] != '')
+						$sql = $sql." AND TipoAmbiente = '".$_REQUEST['TipoAmb']."'";
+				}
+				
 				$result = $conn->query($sql);
 
                 if ($result->num_rows <= 0) {
 					echo "<p class='error'>Errore, query fallita. Numero elementi trovati: ".$result->num_rows."</p>\n";
+					echo "<a href='gestione_ambiente.php'><button class='bottone'>Back</button></a>";
                 } else {
 					echo "<h4>Ci sono attivi: ".$result->num_rows." ambienti.</h4>";
 					//echo "<table class='row'> <form action='visualizza_ambiente.php' method='POST'>";
-					echo "<table class='row'> <form action='gestione_ambiente.php' method='POST'>";
+					echo "<table class='row'> 
+							<form action='gestione_ambiente.php' method='POST'>";
+							
+					$sql = "SELECT DISTINCT TipoAmbiente FROM tb_Ambiente";
+					$ListTipoAmb = $conn->query($sql);
+					
+					echo "	<p>
+								<label>Ragione Sociale: </label> 
+								<input type='text' name='searchRagSoc' id='searchRagSoc' placeholder='Ragione Sociale'>
+							</p>
+							<p>
+								<label>Citta': </label> 
+								<input type='text' name='searchCitta' id='searchCitta' placeholder='Città'>
+							</p>
+							<p>
+								<label>Provincia: </label> 
+								<input type='text' name='searchProv' id='searchProv' placeholder='Provincia'>
+							</p>";
+					echo "	<p>
+								<label>Tipologia Ambiente:</label> 
+							</p>";
+					echo "<select name='TipoAmb' id='TipoAmb'>";
+					echo "<option value=''></option>";
+					while ($itemTipoAmb = $ListTipoAmb->fetch_assoc()) {
+						echo "<option value='".$itemTipoAmb['TipoAmbiente']."'>".$itemTipoAmb['TipoAmbiente']."</option>";
+					}
+					echo "</select>";
+					echo "<p><button type='submit'>Search</button></p>";
+					//	
 					echo "	<thead class='hide'>
 								<th>VIEW</th>
 								<th>Ragione Sociale</th>
@@ -56,6 +96,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 							<tbody>";
 					while ($row = $result->fetch_assoc()) {
 						//<td><input type='submit' name='id' value='V".$row['ID']."'></td>
+						//
 						echo "
 							<thead class='show'><th>Ragione Sociale</th></thead>
 							<tr>
@@ -68,7 +109,9 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 								<td>".$row['TipoAmbiente']."</td>
 							</tr>";
 					}
-					echo "</tbody></form></table>";
+					echo "</tbody>
+							</form>
+							</table>";
                 }
 
 
@@ -80,6 +123,6 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
         }
         ?>
     </main>
-    <?php require 'footer.php'; ?>
+    
   </body>
 </html>

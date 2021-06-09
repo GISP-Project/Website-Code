@@ -29,6 +29,8 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
           $username= trim($_REQUEST['username']);
           $password1= trim($_REQUEST['password1']);
           $password2= trim($_REQUEST['password2']);
+		  $preferiti= "";
+		  $ruolo= "";
           if (strlen($username)>=3 && strlen($username)<=100 && strlen($password1)>=4
               && strlen($password1)<=8 && $password1==$password2
               && preg_match("/^[[:alpha:]]{4,8}$/", $password1) && preg_match("/[a-z]/", $password1)
@@ -37,9 +39,9 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
                 if (mysqli_connect_errno()) {
                     echo "<p class='error'>Siamo spiacenti ma c'è stato un errore connessione al database: ".mysqli_connect_error()."</p>\n";
 				}else{
-					$query = "INSERT INTO tb_utente(email,pwd) VALUES (?,?)";
+					$query = "INSERT INTO tb_utente(email,pwd,preferiti,ruolo) VALUES (?,?,?,?)";
 					$stmt = mysqli_prepare($con, $query);
-					mysqli_stmt_bind_param($stmt,"ss", $username, $password1);
+					mysqli_stmt_bind_param($stmt,"ssss", $username, $password1, $preferiti, $ruolo);
 					$result = mysqli_stmt_execute($stmt);
 					if(!$result){
 						if (mysqli_errno($con) == 1062) {

@@ -92,3 +92,4 @@ function validaFormLiveLength(pass1, live){
 function validaLogin(user, pass){
 	return true;
 }
+

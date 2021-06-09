@@ -57,7 +57,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 		<!--</div>-->
 		
 		<script>
-			redirectTime = "2000";
+			redirectTime = "30000";
 			redirectURL = "thingspeak.php";
 			setTimeout("location.href = redirectURL;",redirectTime);
 		</script>

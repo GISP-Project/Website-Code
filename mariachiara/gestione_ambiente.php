@@ -80,16 +80,11 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 								
 							}
 						}
-					}
-					
-					
-					
-					
-					
+					}	
 				}
-				
-				
-			}		
+			} else {
+				require 'ambienti.php';
+			}	
 		?>
         
     </main>
