@@ -4,3 +4,4 @@ CREATE TABLE tb_Utente (
 )
 
 ALTER TABLE tb_Utente ADD COLUMN preferiti VARCHAR(100)
+ALTER TABLE tb_Utente ADD COLUMN ruolo VARCHAR(25)

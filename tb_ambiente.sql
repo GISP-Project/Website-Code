@@ -29,3 +29,4 @@ VALUES ('Comune di Orbassano', 'Piazza Umberto, 5', 'Orbassano', 'TO', '10043', 
 
 ALTER TABLE tb_ambiente ADD COLUMN PresenzeRealTime INT(10)
 ALTER TABLE tb_ambiente ADD COLUMN LimMaxPresenze INT(10)
+ALTER TABLE tb_ambiente ADD COLUMN emailEnte VARCHAR(100)
