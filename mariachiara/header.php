@@ -32,14 +32,17 @@
 					} else {
 						if ($_SESSION['ruolo'] === "CLIENTE") {
 							echo "<a href='home.php'>Home</a>";
+							echo "<a href='profilo.php'>Profilo</a>";
 							echo "<a href='gestione_ambiente.php'>Ambienti</a>";
 							echo "<a href='preferiti.php'>Preferiti</a>";
 							echo "<a href='listaPrenotazioniUtente.php'>Prenotazioni</a>";
+							echo "<a href='listaPremi.php'>Premi</a>";
 							echo "<a href='logout.php'>Logout</a>";
 						}
 						if ($_SESSION['ruolo'] === "ENTE") {
 							echo "<a href='home.php'>Home</a>";
 							echo "<a href='logout.php'>Logout</a>";
+							echo "<a href='profiloEnte.php'>Profilo</a>";
 							echo "<a href='listaPrenotazioniEnte.php'>Prenotazioni</a>";
 							echo "<a href='datiIngressiEnte.php'>Affollamento</a>";
 						}

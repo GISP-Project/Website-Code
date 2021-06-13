@@ -46,6 +46,8 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					echo "<a href='home.php'><button class='bottone'>Back</button></a>";
                 } else {
 					echo "<h4>Ci sono: ".$result->num_rows." prenotazione/i attiva/e.</h4>";
+					echo "<p>*  Annullare la prenotazione nel caso il cliente NON si presenti</p>";
+					echo "<p>** Chiudere la prenotazione nel caso il cliente si presenti</p>";
 					echo "<table class='row'> 
 							<form action='chiusuraPrenotazioneEnte.php' method='POST'>";
 							
@@ -53,8 +55,8 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 								<th>ID</th>
 								<th>Cliente</th>
 								<th>Data/ora</th>
-								<th>Stato</th>
-								<th>Chiudi prenotazione</th>
+								<th>Annulla prenotazione*</th>
+								<th>Chiudi prenotazione**</th>
 							</thead>
 							<tbody>";
 							
@@ -72,8 +74,8 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 								<td>".$row['idPrenotazione']."</td>
 								<td>".$row['emailUtente']."</td>
 								<td>".$dataoraPrenotazione."</td>
-								<td>".$row['statoPrenotazione']."</td>
-								<td><button type='submit' name='idPrenotazione' value='".$row['idPrenotazione']."'>CHIUDI</button></td>
+								<td><button type='submit' name='idPrenotazione' value='A_".$row['idPrenotazione']."'>ANNNULLA</button></td>
+								<td><button type='submit' name='idPrenotazione' value='C_".$row['idPrenotazione']."'>CHIUDI</button></td>
 							</tr>";
 					}
 					echo "</tbody>

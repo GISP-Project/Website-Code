@@ -116,6 +116,11 @@ img{
   line-height: 1.5em;
 }
 
+.riquadro{
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
 .bottone{
   background-color: #003366;
   border: none;

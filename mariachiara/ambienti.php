@@ -74,15 +74,14 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 								<input type='text' name='searchProv' id='searchProv' placeholder='Provincia'>
 							</p>";
 					echo "	<p>
-								<label>Tipologia Ambiente:</label> 
-							</p>";
+								<label>Tipologia Ambiente:</label> ";
 					echo "<select name='TipoAmb' id='TipoAmb'>";
 					echo "<option value=''></option>";
 					while ($itemTipoAmb = $ListTipoAmb->fetch_assoc()) {
 						echo "<option value='".$itemTipoAmb['TipoAmbiente']."'>".$itemTipoAmb['TipoAmbiente']."</option>";
 					}
-					echo "</select>";
-					echo "<p><button type='submit'>Search</button></p>";
+					echo "</select></p>";
+					echo "<p><button type='submit' class='bottone'>Search</button></p>";
 					//	
 					echo "	<thead class='hide'>
 								<th>VIEW</th>

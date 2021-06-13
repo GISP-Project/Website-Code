@@ -36,6 +36,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 						$_SESSION['ID_AMBIENTE'] = substr($_REQUEST['id'],2);
 						$_SESSION['ID_AMB_PREF'] = $_SESSION['ID_AMBIENTE'];
 					}
+
 					$sql = "SELECT * FROM tb_Ambiente WHERE ID = '".$_SESSION['ID_AMBIENTE']."'";
 					$result = $conn->query($sql);
 					
@@ -43,12 +44,35 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 						echo "<p class='error'>Errore, query fallita. Non trovato l'elemento con ID: ".$_SESSION['ID_AMBIENTE']."</p>\n";
 					} else {
 						$row = $result->fetch_assoc();
+						$PresenzeRealTime = $row['PresenzeRealTime'];
+						
+						if (isset($row['url_thingspeak'])) {							
+							//Se hai un URL e il tuo php lo supporta, puoi semplicemente chiamare file_get_contents:
+							$data = file_get_contents($row["url_thingspeak"]);
+							//se $ response è JSON, utilizzare json_decode per trasformarlo in array php:
+							$response = json_decode($data);
+								
+							$PresenzeRealTime = $response->feeds[0]->field1;
+							
+							$sql = "UPDATE tb_Ambiente SET PresenzeRealTime = '".$response->feeds[0]->field1."' WHERE ID = '".$_SESSION['ID_AMBIENTE']."'";
+							if ($conn->query($sql) === TRUE) {
+							} else {
+							}
+						}
+						
+						
 						echo "<h2>".$row['RagioneSociale']."</h2>";
 						echo "<a href='preferiti.php?IdPref=".$_SESSION['ID_AMBIENTE']."'><button class='bottone'>Aggiungi a Preferiti</button></a>";
-						echo "<a href='prenotazione.php?IdPren=".$_SESSION['ID_AMBIENTE']."&RagSocPren=".$row['RagioneSociale']."'><button class='bottone'>Prenota ingresso</button></a>";
+						if ($row['prenotazione'] == "Y") {
+							echo "<a href='prenotazione.php?IdPren=".$_SESSION['ID_AMBIENTE']."&RagSocPren=".$row['RagioneSociale']."'>
+								<button class='bottone'>Prenota ingresso</button></a>";
+						} else {
+							echo "<p class='error'>L'ente non ha dato l'autorizzazione a prenotare l'ingresso.</p>";
+						}
+						
 						echo "<table class='row'>";
 						echo "
-								<tr><th class='col-6'>Affollamento Real Time:</th><td class='col-6'>".$row['PresenzeRealTime']."</td></tr>
+								<tr><th class='col-6'>Affollamento Real Time:</th><td class='col-6'>".$PresenzeRealTime."</td></tr>
 								<tr><th class='col-6'>Numero massimo utenti:</th><td class='col-6'>".$row['LimMaxPresenze']."</td></tr>
 								<tr><th class='col-6'>Indirizzo:</th><td class='col-6'>".$row['Indirizzo']."</td></tr>
 								<tr><th class='col-6'>Città:</th><td class='col-6'>".$row['Città']."</td></tr>
