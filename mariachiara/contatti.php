@@ -31,8 +31,8 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 		<div class='alcentro'>
 		<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11272.612649534543!2d7.6623716!3d45.062404!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd97006264fbdaf1b!2sPolitecnico%20di%20Torino!5e0!3m2!1sit!2sit!4v1624428751895!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 		</div>
-
     </main>
+
     <?php require 'footer.php'; ?>
   </body>
 </html>

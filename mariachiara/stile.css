@@ -146,10 +146,6 @@ p{
   opacity: 0.8;
 }
 
-iframe{
-	height: 100%;
-	width: 100%;
-}
 /*STILE DEI FORM*/
 .centered{
   text-align: justify;
@@ -266,9 +262,7 @@ table, thead, tbody {
   .show{
     display: inherit;
     visibility: visible;
-
   }
-
   .hide{
     display: none;
   }
@@ -286,14 +280,16 @@ table, thead, tbody {
   .centrato, img, .centered{
     width: 100%;
   }
-
   input[type=submit], input[type=reset]{
     margin-top: 0.2em;
     margin-bottom: 0.2em;
   }
-  
   .bottone{
 	  font-size: 0.8em;
 	  width: 50%;
-	}
+  }
+  iframe{
+	height: 100%;
+	width: 100%;
+  }
 }
