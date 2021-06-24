@@ -72,7 +72,6 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 						</div>
 						';*/
 						echo '<div class="alcentro">'.$row['iframe_thingspeak'].'</div>';
-						echo "<p class='alcentro'>".$row['iframe_thingspeak']."</p>";
 						
 						$sql = "UPDATE tb_Ambiente SET PresenzeRealTime = '".$response->feeds[0]->field1."' WHERE emailEnte='".$_SESSION["user"]."'";
 						if ($conn->query($sql) === TRUE) {
