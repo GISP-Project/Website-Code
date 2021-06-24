@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Accedi alla tua pagina personale per vedere i tuoi dati.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Profilo - QUIKUEUE</title>
+    <title>Profilo - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -42,12 +42,16 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 				
 				echo "<h2>Il tuo profilo</h2>";
 				
-				echo "	<p>
+				echo "	<p class='alcentro'>
 							<label>E-mail: </label> 
+						</p>
+						<p class='alcentro'>
 							<input type='text' value='".$utente['email']."' readonly>
 						</p>
-						<p>
+						<p class='alcentro'>
 							<label>Punti: </label> 
+						</p>
+						<p class='alcentro'>
 							<input type='text' value='".$utente['punti']."' readonly>
 						</p>";
 				echo "<a href='cancella_profilo.php'><button class='bottone'>DELETE</button></a>";

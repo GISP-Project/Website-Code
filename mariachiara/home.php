@@ -18,18 +18,18 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Servizio per dati real-time affollamento ambienti.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Home - Quikueue</title>
+    <title>Home - Quickueue</title>
     <link rel="stylesheet" href="stile.css">
   </head>
   <body>
     <?php require 'header.php'; ?>
     <main class="row">
-      <h2>BENVENUTO IN QUIKUEUE</h2>
+      <h2>BENVENUTO IN QUICKUEUE</h2>
         <img src="coda.jpg" alt="Coda ingresso ambiente" />
         <br />
         <div class="centrato">
         <h3>La nostra APP...</h3>
-        <p>Benvenuto su QUIKUEUE! Con la nostra app puoi visualizzare in real-time l'affollamento di, uffici, biblioteche... tutti i tuoi ambienti preferiti che solitamente frequenti. <br />
+        <p>Benvenuto su QUICKUEUE! Con la nostra app puoi visualizzare in real-time l'affollamento di, uffici, biblioteche... tutti i tuoi ambienti preferiti che solitamente frequenti. <br />
 		Ti basta registrarti e accedere alla nostra app per non dover più aspettare in coda.<br />
 		Prenota il tuo ingresso grazie al nostro servizio e esponi il QR Code ricevuto all'ingresso.</p>
         <br />

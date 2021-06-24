@@ -15,10 +15,10 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
     <meta name="author" content="Mariachiara Mastrangelo">
-    <meta name="description" content="Prenotazioni QUIKUEUE.">
+    <meta name="description" content="Prenotazioni QUICKUEUE.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Conferma Premio - Quikueue</title>
+    <title>Conferma Premio - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -53,7 +53,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
             }
 
         } else {
-			echo "<h2>Registrati o effettua il login per poter consultare i nostri premi su QUIKUEUE</h2>";
+			echo "<h2>Registrati o effettua il login per poter consultare i nostri premi su QUICKUEUE</h2>";
         }
         ?>
     </main>

@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Servizio per dati real-time affollamento ambienti.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Home - Quikueue</title>
+    <title>Home - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
   </head>
   <body>

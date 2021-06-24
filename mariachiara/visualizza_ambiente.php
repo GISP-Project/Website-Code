@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Pagina di dettaglio dell'ambiente selezionato.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Dettagli ambiente - QUIKUEUE</title>
+    <title>Dettagli ambiente - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
   </head>
   <body>
@@ -62,28 +62,24 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 						
 						
 						echo "<h2>".$row['RagioneSociale']."</h2>";
+						echo "<p class='alcentro'>".$row['Indirizzo']."</p>";
+						echo "<p class='alcentro'>".$row['Città']." - ".$row['Provincia']." - ".$row['CAP']."</p>";
+						echo "<p class='alcentro'>".$row['TipoAmbiente']."</p>";
 						echo "<a href='preferiti.php?IdPref=".$_SESSION['ID_AMBIENTE']."'><button class='bottone'>Aggiungi a Preferiti</button></a>";
 						if ($row['prenotazione'] == "Y") {
-							echo "<a href='prenotazione.php?IdPren=".$_SESSION['ID_AMBIENTE']."&RagSocPren=".$row['RagioneSociale']."'>
+							echo "<br/><a href='prenotazione.php?IdPren=".$_SESSION['ID_AMBIENTE']."&RagSocPren=".$row['RagioneSociale']."'>
 								<button class='bottone'>Prenota ingresso</button></a>";
 						} else {
 							echo "<p class='error'>L'ente non ha dato l'autorizzazione a prenotare l'ingresso.</p>";
 						}
 						
-						echo "<table class='row'>";
-						echo "
-								<tr><th class='col-6'>Affollamento Real Time:</th><td class='col-6'>".$PresenzeRealTime."</td></tr>
-								<tr><th class='col-6'>Numero massimo utenti:</th><td class='col-6'>".$row['LimMaxPresenze']."</td></tr>
-								<tr><th class='col-6'>Indirizzo:</th><td class='col-6'>".$row['Indirizzo']."</td></tr>
-								<tr><th class='col-6'>Città:</th><td class='col-6'>".$row['Città']."</td></tr>
-								<tr><th class='col-6'>Provincia:</th><td class='col-6'>".$row['Provincia']."</td></tr>
-								<tr><th class='col-6'>CAP:</th><td class='col-6'>".$row['CAP']."</td></tr>
-								<tr><th class='col-6'>Tipo Ambiente:</th><td class='col-6'>".$row['TipoAmbiente']."</td></tr>";
-								
-						echo "</table>";
+						echo "<br/><div class='riquadro'>";
+						echo "<h4>Affollamento Real Time: ".$PresenzeRealTime."</h4>";
+						echo "<h4>Numero massimo utenti: ".$row['LimMaxPresenze']."</h4>";
+						echo "<div class='alcentro'>".$row['GoogleMap']."</div>";
+						echo "<br/></div><br/>";
 					}
 					
-					echo "<div class='centered'>".$row['GoogleMap']."</div>";
 					echo "<br/><a href='gestione_ambiente.php'><button class='bottone'>Back</button></a>";
 					
 					/*echo '

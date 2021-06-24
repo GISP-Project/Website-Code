@@ -15,10 +15,10 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
     <meta name="author" content="Mariachiara Mastrangelo">
-    <meta name="description" content="Grazie per esserti registrato a QUIKUEUE.">
+    <meta name="description" content="Grazie per esserti registrato a QUICKUEUE.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Esito registrazione - QUIKUEUE</title>
+    <title>Esito registrazione - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
   </head>
   <body>

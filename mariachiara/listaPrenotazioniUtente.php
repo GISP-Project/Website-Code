@@ -15,10 +15,10 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
     <meta name="author" content="Mariachiara Mastrangelo">
-    <meta name="description" content="Prenotazioni QUIKUEUE.">
+    <meta name="description" content="Prenotazioni QUICKUEUE.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Lista prenotazioni - Quikueue</title>
+    <title>Lista prenotazioni - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -34,7 +34,9 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
             else{
                 echo "<h2>Le tue prenotazioni</h2>";			
 
-                $sql = "SELECT * FROM tb_prenotazione WHERE emailUtente ='".$_SESSION["user"]."' AND statoPrenotazione = 'ATTIVA'";				
+                $sql = "SELECT * FROM tb_prenotazione 
+						WHERE emailUtente ='".$_SESSION["user"]."' AND statoPrenotazione = 'ATTIVA'
+						ORDER BY dataoraPrenotazione";				
 				$result = $conn->query($sql);
 
                 if ($result->num_rows <= 0) {
@@ -42,35 +44,22 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					echo "<a href='home.php'><button class='bottone'>Back</button></a>";
                 } else {
 					echo "<h4>Hai: ".$result->num_rows." prenotazioni attive.</h4>";
-					echo "<table class='row'> 
-							<form action='gestione_ambiente.php' method='POST'>";
-							
-					echo "	<thead class='hide'>
-								<th>ID</th>
-								<th>Ragione sociale</th>
-								<th>Data/ora</th>
-								<th>Stato</th>
-							</thead>
-							<tbody>";
+					echo "<form action='cancellaprenotazione.php' method='POST'>";
 					while ($row = $result->fetch_assoc()) {
-						//<td><button type='submit' name='id' value='V_".$row['ID']."'>".$row['ID']."</button></td>
 						$dataoraPrenotazione = substr($row['dataoraPrenotazione'], 6, 2)."/".
 												substr($row['dataoraPrenotazione'], 4, 2)."/".
 												substr($row['dataoraPrenotazione'], 0, 4)." ".
 												substr($row['dataoraPrenotazione'], 8, 2).":".
 												substr($row['dataoraPrenotazione'], 10, 2)." ";
-						echo "
-							<thead class='show'><th>Ragione Sociale</th></thead>
-							<tr>
-								<td>".$row['idPrenotazione']."</td>
-								<td>".$row['RagSocAmbiente']."</td>
-								<td>".$dataoraPrenotazione."</td>
-								<td>".$row['statoPrenotazione']."</td>
-							</tr>";
+						echo "<div class='riquadro'>";
+						echo "<p class='alcentro'>".$row['idPrenotazione']."</p>
+							<p class='alcentro'>".$row['RagSocAmbiente']."</p>
+							<p class='alcentro'>".$dataoraPrenotazione."</p>";
+						echo "<button class='bottone' type='submit' name='idPrenotazione' value='".$row['idPrenotazione']."'>DELETE</button>";
+						echo "<br/></div><br/>";
 					}
-					echo "</tbody>
-							</form>
-							</table>";
+					echo "</form>";
+					
                 }
 
 
@@ -78,7 +67,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
             }
 
         } else {
-			echo "<h2>Registrati o effettua il login per poter consultare le tue prenotazioni su QUIKUEUE</h2>";
+			echo "<h2>Registrati o effettua il login per poter consultare le tue prenotazioni su QUICKUEUE</h2>";
         }
         ?>
     </main>

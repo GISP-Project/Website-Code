@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Accedi alla tua pagina personale per vedere affollamenti in real-time degli ambienti.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Login - QUIKUEUE</title>
+    <title>Login - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -32,17 +32,17 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
       if (isset($_SESSION['user'])) {
         echo "Hai effettuato il login, per cambiare utente prima effettuare il logout.";
       } else {
-        echo "<h2>Effettua l'accesso a QUIKUEUE</h2>";
+        echo "<h2>Effettua l'accesso a QUICKUEUE</h2>";
         echo '<form method="post" onsubmit="return validaLogin(username.value, password.value)" action="login.php">
-              <p><label>Username </label> <input type="text" name="username"';
+              <p class="alcentro"><label>Username </label> <input type="text" name="username"';
               if (isset($_COOKIE["user_cookie"])) {
                 echo 'value="' .$_COOKIE["user_cookie"]. '">';
               }else{
                 echo 'placeholder="Username" >';
               }
         echo  '</p>
-              <p><label>Password </label> <input type="password" name="password" id="passw" placeholder="Password"></p>
-              <p><input type="submit"><input type="reset"></p>
+              <p class="alcentro"><label>Password </label> <input type="password" name="password" id="passw" placeholder="Password"></p>
+              <p class="alcentro"><input type="submit"><input type="reset"></p>
               </form>';
       }
 	  

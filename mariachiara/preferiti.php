@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Elenco degli ambienti preferiti.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Preferiti - Quikueue</title>
+    <title>Preferiti - Quickueue</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -76,42 +76,24 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					} else {
 						$lstPref = explode("#", $pref['preferiti']);
 						$firstItem = true;
+						echo 	"<form method='POST' action='gestione_ambiente.php'>";
 						foreach($lstPref as $tmp) {
 							if ($tmp == "") {
 								continue;
 							}
-							if ($firstItem) {
-								echo 	"<table class='row'> <form method='POST' action='gestione_ambiente.php'>
-											<thead class='hide'>
-												<th>VIEW</th>
-												<th>Ragione Sociale</th>
-												<th>Indirizzo</th>
-												<th>Città</th>
-												<th>Prov.</th>
-												<th>CAP</th>
-												<th>Tipo Amb.</th>
-												<th>Action</th>
-											</thead>
-											<tbody>";
-							}
-							$firstItem = false;
 							$sql = "SELECT * FROM tb_ambiente WHERE ID = '".$tmp."'";
 							$result = $conn->query($sql);
 							$row = $result->fetch_assoc();
 							//<td><input type='submit' name='id' value=".$row['ID']."></td>
-							echo "	<thead class='show'><th>Ragione Sociale</th></thead>
-										<tr>
-											<td><button type='submit' name='id' value='V_".$row['ID']."'>".$row['ID']."</button></td>
-											<td>".$row['RagioneSociale']."</td>
-											<td>".$row['Indirizzo']."</td>
-											<td>".$row['Città']."</td>
-											<td>".$row['Provincia']."</td>
-											<td>".$row['CAP']."</td>
-											<td>".$row['TipoAmbiente']."</td>
-											<td><button type='submit' name='id' value='D_".$row['ID']."'>DELETE</button></td>
-										</tr>";
+							echo "<div class='riquadro'>";
+							echo "<p class='alcentro'>".$row['RagioneSociale']."</p>";
+							echo "<p class='alcentro'>".$row['Indirizzo']."</p>";
+							echo "<p class='alcentro'>".$row['Città']." - ".$row['Provincia']." - ".$row['CAP']."</p>";
+							echo "<p class='alcentro'>".$row['TipoAmbiente']."</p>";
+							echo "<button class='bottone' type='submit' name='id' value='V_".$row['ID']."'>VIEW</button>";
+							echo "<br/></div><br/>";
 						}
-						echo "</tbody></form></table>";
+						echo "</form>";
 					}
                 }
 				
@@ -120,7 +102,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
             }
 
         } else {
-			echo "<h2>Registrati o effettua il login per poter consultare i tuoi ambienti preferiti su QUIKUEUE</h2>";
+			echo "<h2>Registrati o effettua il login per poter consultare i tuoi ambienti preferiti su QUICKUEUE</h2>";
         }
         ?>
     </main>

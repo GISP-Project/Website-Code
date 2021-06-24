@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Accedi alla tua pagina personale per vedere i tuoi dati.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Profilo - QUIKUEUE</title>
+    <title>Profilo - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -43,28 +43,40 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 				echo "<h2>Il tuo profilo</h2>";
 						
 				echo "<div class='riquadro'>";
-				echo "	<p class='centrato'>
-							<label class='centrato'>E-mail: </label> 
-							<input class='centrato' type='text' value='".$ente['emailEnte']."' readonly>
+				echo "	<p class='alcentro'>
+							<label class='centrato'>E-mail: </label>
+						</p>
+						<p class='alcentro'>
+							<input type='text' value='".$ente['emailEnte']."' readonly>
 						</p>";
-				echo "	<p class='centrato'>
+				echo "	<p class='alcentro'>
 							<label>Ragione sociale: </label> 
+						</p>
+						<p class='alcentro'>
 							<input type='text' value='".$ente['RagioneSociale']."' readonly>
 						</p>";
-				echo "	<p class='centrato'>
+				echo "	<p class='alcentro'>
 							<label>Indirizzo: </label> 
+						</p>
+						<p class='alcentro'>
 							<input type='text' value='".$ente['Indirizzo']."' readonly>
 						</p>";
-				echo "	<p class='centrato'>
+				echo "	<p class='alcentro'>
 							<label>Città: </label> 
+						</p>
+						<p class='alcentro'>
 							<input type='text' value='".$ente['Città']."' readonly>
 						</p>";
-				echo "	<p class='centrato'>
+				echo "	<p class='alcentro'>
 							<label>Provincia: </label> 
+						</p>
+						<p class='alcentro'>
 							<input type='text' value='".$ente['Provincia']."' readonly>
 						</p>";
-				echo "	<p class='centrato'>
+				echo "	<p class='alcentro'>
 							<label>CAP: </label> 
+						</p>
+						<p class='alcentro'>
 							<input type='text' value='".$ente['CAP']."' readonly>
 						</p>";
 				echo "<br/></div><br/>";
@@ -77,8 +89,16 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					echo "<h4>Vuoi permettere ai clienti di prenotare l'ingresso?</h4>";
 					echo "<a href='cambiaStatoPrenotEnte.php?statoPrenotazione=Y'><button class='bottone'>ATTIVA</button></a>";
 				}
-				
 				echo "<br/></div><br/>";
+				
+				echo "<form action='cambiaLimMaxPresenzeEnte.php' method='POST'>";
+				echo "<div class='riquadro'>";
+				echo "<h4>Modifica il limite massimo di ingressi:</h4>";
+				echo "	<p class='alcentro'>
+							<input type='text' id='limMaxPres' name='limMaxPres' value='".$ente['LimMaxPresenze']."'>
+						</p>";
+				echo "<input type='submit' value='Modifica'>";
+				echo "<br/><br/></div></form><br/>";
 				
 				echo "<a href='home.php'><button class='bottone'>BACK</button></a>";
 				

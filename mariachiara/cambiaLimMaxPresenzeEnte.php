@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Prenotazioni QUICKUEUE.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Catalogo Premi - QUICKUEUE</title>
+    <title>Conferma Premio - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -32,30 +32,30 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
             if ($conn->connect_error)
                 echo "<p class='error'>Siamo spiacenti ma c'è stato un errore connessione al database: ".$conn->connect_error."</p>\n";
             else{
-                echo "<h2>Catalogo premi</h2>";			
-
-                $sql = "SELECT * FROM tb_catalogo_premi";				
-				$result = $conn->query($sql);
-
-                if ($result->num_rows <= 0) {
-					echo "<p class='error'>Errore, query fallita. </p>\n";
-					echo "<a href='home.php'><button class='bottone'>Back</button></a>";
-                } else {
-					while ($row = $result->fetch_assoc()) {
-						echo "<div class='riquadro'>";
-						echo "<h4>Premio: ".$row['DescrizionePremio']."</h4>";
-						echo "<h4>Punti: ".$row['PuntiRichiesti']."</h4>";
-						echo "<a href='richiestaPremio.php?CodPremio=".$row['CodicePremio']."'><button class='bottone'>Richiedi premio</button></a>";
-						echo "<br/></div><br/>";
+				echo "<h2>Cambio stato prenotazione</h2>";
+				
+				if(isset($_POST["limMaxPres"])) {
+					
+					$sql = "UPDATE tb_ambiente SET LimMaxPresenze = '".$_POST["limMaxPres"]."' WHERE emailEnte = '".$_SESSION["user"]."'";
+					if ($conn->query($sql) === TRUE) {
+						echo "<h4>Limite Massimo di Presenze cambiato.</h4>";
+						echo "<h4>".$_POST["limMaxPres"]."</h4>";
+					} else {
+						echo "<p class='error'>Errore, non e' stato possibile cambiare il limite massimo di presenze. Errore: ".$conn->error."</p>\n";
 					}
-                }
-
+					
+				} else {
+					echo "<p class='error'>Non e' stato indicato il limite massimo di presenze per aggiornare il db. Torna al profilo.</p>\n";
+				}
+                
                 $conn->close();
             }
 
         } else {
-			echo "<h2>Registrati o effettua il login per poter consultare i nostri premi su QUICKUEUE</h2>";
+			echo "<h2>Registrati o effettua il login su QUICKUEUE</h2>";
         }
+		
+		echo "<a href='profiloEnte.php'><button class='bottone'>Back</button></a>";
         ?>
     </main>
     <?php require 'footer.php'; ?>

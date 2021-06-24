@@ -15,10 +15,10 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
     <meta name="author" content="Mariachiara Mastrangelo">
-    <meta name="description" content="Prenotazioni QUIKUEUE.">
+    <meta name="description" content="Prenotazioni QUICKUEUE.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Lista prenotazioni - Quikueue</title>
+    <title>Lista prenotazioni - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -43,17 +43,46 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					
 					if ($conn->query($sql) === TRUE) {
 						echo "<h4>La prenotazione avente ID:</h4>";
-						echo "<h2>".$ID."</h2>";
+						echo "<h4>".$ID."</h4>";
 						echo "<h4>e' stata correttamente ANNULLATA.</h4>";
+						
+						$sql = "SELECT * FROM tb_prenotazione WHERE idPrenotazione = '".$ID."'";
+						$prenotazione = $conn->query($sql);
+						if ($prenotazione->num_rows <= 0) {
+							echo "<p class='error'>Non e' stato possibile sottrarre i punti al cliente. </p>\n";
+						} else {
+							$row = $prenotazione->fetch_assoc();
+							$cliente = $row["emailUtente"];
+							
+							$sql = "SELECT * FROM tb_utente WHERE email = '".$cliente."'";
+							$utente = $conn->query($sql);
+							if ($utente->num_rows <= 0) {
+								echo "<p class='error'>Non e' stato possibile sottrarre i punti al cliente. </p>\n";
+							} else {
+								$row = $utente->fetch_assoc();
+								$puntiCliente = $row["punti"];
+								$puntiCliente = $puntiCliente - 50;
+								
+								$sql = "UPDATE tb_utente SET punti = '".$puntiCliente."' WHERE email = '".$cliente."'";
+								if ($conn->query($sql) === TRUE) {
+									echo "<h4>Sono stati sottratti 50 punti all'cliente '".$cliente."'</h4>";
+								} else {
+									echo "<p class='error'>Errore, non e' stato possibile annullare la prenotazione avente ID: ".$ID.". Errore: ".$conn->error."</p>\n";
+								}
+							}
+
+						}
+						
 					} else {
 						echo "<p class='error'>Errore, non e' stato possibile annullare la prenotazione avente ID: ".$ID.". Errore: ".$conn->error."</p>\n";
 					}
+					
 				} else if ($filtro == "C_") {
 					$sql = "UPDATE tb_prenotazione SET statoPrenotazione = 'CHIUSA' WHERE idPrenotazione = '".$ID."'";
 					
 					if ($conn->query($sql) === TRUE) {
 						echo "<h4>La prenotazione avente ID:</h4>";
-						echo "<h2>".$ID."</h2>";
+						echo "<h4>".$ID."</h4>";
 						echo "<h4>e' stata correttamente CHIUSA.</h4>";
 						
 						$sql = "SELECT * FROM tb_prenotazione WHERE idPrenotazione = '".$ID."'";
@@ -89,7 +118,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 				} else {
 					if ($conn->query($sql) === TRUE) {
 						echo "<h4>La prenotazione avente ID:</h4>";
-						echo "<h2>".$ID."</h2>";
+						echo "<h4>".$ID."</h4>";
 						echo "<h4>e' stata correttamente CHIUSA.</h4>";
 					} else {
 						echo "<p class='error'>Errore, non e' stato possibile chiudere la prenotazione avente ID: ".$ID.". Errore: ".$conn->error."</p>\n";
@@ -102,7 +131,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
             }
 
         } else {
-			echo "<h2>Registrati o effettua il login per poter consultare le tue prenotazioni su QUIKUEUE</h2>";
+			echo "<h2>Registrati o effettua il login per poter consultare le tue prenotazioni su QUICKUEUE</h2>";
         }
         ?>
     </main>

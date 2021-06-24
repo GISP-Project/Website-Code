@@ -15,10 +15,10 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
     <meta name="author" content="Mariachiara Mastrangelo">
-    <meta name="description" content="Elenco degli ambienti che utilizzano QUIKUEUE.">
+    <meta name="description" content="Elenco degli ambienti che utilizzano QUICKUEUE.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Ambienti - Quikueue</title>
+    <title>Ambienti - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -33,7 +33,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
                 echo "<p class='error'>Siamo spiacenti ma c'è stato un errore connessione al database: ".$conn->connect_error."</p>\n";
             else{
                 echo "<h2>I nostri ambienti associati</h2>";
-                echo "<h4>In questa sezione puoi vedere tutti gli ambienti associati a QUIKUEUE.</h4>";				
+                echo "<h4>In questa sezione puoi vedere tutti gli ambienti associati a QUICKUEUE.</h4>";				
 
                 $sql = "SELECT * FROM tb_Ambiente WHERE 1=1";
 				if (isset($_REQUEST['searchRagSoc']))
@@ -61,56 +61,46 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					$sql = "SELECT DISTINCT TipoAmbiente FROM tb_Ambiente";
 					$ListTipoAmb = $conn->query($sql);
 					
-					echo "	<p>
-								<label>Ragione Sociale: </label> 
+					echo "	<p class='alcentro'>
+								<label>Ragione Sociale: </label>
+							</p>
+							<p class='alcentro'>
 								<input type='text' name='searchRagSoc' id='searchRagSoc' placeholder='Ragione Sociale'>
 							</p>
-							<p>
+							<p class='alcentro'>
 								<label>Citta': </label> 
+							</p>
+							<p class='alcentro'>
 								<input type='text' name='searchCitta' id='searchCitta' placeholder='Città'>
 							</p>
-							<p>
+							<p class='alcentro'>
 								<label>Provincia: </label> 
+							</p>
+							<p class='alcentro'>
 								<input type='text' name='searchProv' id='searchProv' placeholder='Provincia'>
 							</p>";
-					echo "	<p>
-								<label>Tipologia Ambiente:</label> ";
-					echo "<select name='TipoAmb' id='TipoAmb'>";
+					echo "	<p class='alcentro'>
+								<label>Tipologia Ambiente:</label> 
+							</p>";
+					echo "<p class='alcentro'>
+							<select name='TipoAmb' id='TipoAmb'>";
 					echo "<option value=''></option>";
 					while ($itemTipoAmb = $ListTipoAmb->fetch_assoc()) {
 						echo "<option value='".$itemTipoAmb['TipoAmbiente']."'>".$itemTipoAmb['TipoAmbiente']."</option>";
 					}
-					echo "</select></p>";
+					echo "	</select>
+						</p>";
 					echo "<p><button type='submit' class='bottone'>Search</button></p>";
-					//	
-					echo "	<thead class='hide'>
-								<th>VIEW</th>
-								<th>Ragione Sociale</th>
-								<th>Indirizzo</th>
-								<th>Città</th>
-								<th>Prov.</th>
-								<th>CAP</th>
-								<th>Tipo Amb.</th>
-							</thead>
-							<tbody>";
+					
 					while ($row = $result->fetch_assoc()) {
-						//<td><input type='submit' name='id' value='V".$row['ID']."'></td>
-						//
-						echo "
-							<thead class='show'><th>Ragione Sociale</th></thead>
-							<tr>
-								<td><button type='submit' name='id' value='V_".$row['ID']."'>".$row['ID']."</button></td>
-								<td>".$row['RagioneSociale']."</td>
-								<td>".$row['Indirizzo']."</td>
-								<td>".$row['Città']."</td>
-								<td>".$row['Provincia']."</td>
-								<td>".$row['CAP']."</td>
-								<td>".$row['TipoAmbiente']."</td>
-							</tr>";
+						echo "<div class='riquadro'>";
+						echo "<p class='alcentro'>".$row['RagioneSociale']."</p>";
+						echo "<p class='alcentro'>".$row['Indirizzo']."</p>";
+						echo "<p class='alcentro'>".$row['Città']." - ".$row['Provincia']." - ".$row['CAP']."</p>";
+						echo "<p class='alcentro'>".$row['TipoAmbiente']."</p>";
+						echo "<button class='bottone' type='submit' name='id' value='V_".$row['ID']."'>VIEW</button>";
+						echo "<br/></div><br/>";
 					}
-					echo "</tbody>
-							</form>
-							</table>";
                 }
 
 
@@ -118,7 +108,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
             }
 
         } else {
-			echo "<h2>Registrati o effettua il login per poter consultare gli ambienti registrati su QUIKUEUE</h2>";
+			echo "<h2>Registrati o effettua il login per poter consultare gli ambienti registrati su QUICKUEUE</h2>";
         }
         ?>
     </main>

@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Servizio per dati real-time affollamento ambienti.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Dati Ingressi - Quikueue</title>
+    <title>Dati Ingressi - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
   </head>
   <body>
@@ -31,8 +31,8 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 				if ($conn->connect_error)
 					echo "<p class='error'>Siamo spiacenti ma c'è stato un errore connessione al database: ".$conn->connect_error."</p>\n";
 				else{
-					echo "<h2>".$_SESSION['RagioneSocialeEnte']."</h2>";
 					echo "<h2>Dati affollamento real-time</h2>";
+					echo "<h4>".$_SESSION['RagioneSocialeEnte']."</h4>";
 					
 					$sql = "SELECT * FROM tb_Ambiente WHERE emailEnte='".$_SESSION["user"]."'";
 					$result = $conn->query($sql);
@@ -59,8 +59,9 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 												substr($tmpDataora, 5, 2)."/".
 												substr($tmpDataora, 0, 4)." ".
 												substr($tmpDataora, 11, 5);
-						echo "<h4>Ultimo aggiornamento: ".$dataoraAggiornamento."</h4>";
-						echo "<h4>Numero utenti presenti: ".$response->feeds[0]->field1."</h4>";
+						echo "<p class='alcentro'>Ultimo aggiornamento:</p>";
+						echo "<h4>".$dataoraAggiornamento."</h4>";
+						echo "<p class='alcentro'>Numero utenti presenti: <h4>".$response->feeds[0]->field1."</h4></p>";
 						echo "</div>";
 						
 						/*echo '
@@ -84,7 +85,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 				}
 
 			} else {
-				echo "<h2>Registrati o effettua il login per poter consultare le tue prenotazioni su QUIKUEUE</h2>";
+				echo "<h2>Registrati o effettua il login per poter consultare le tue prenotazioni su QUICKUEUE</h2>";
 			}
 		
 		

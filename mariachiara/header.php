@@ -24,11 +24,13 @@
 					echo "<a href='home.php'>Home</a>";
 					echo "<a href='login.php'>Login</a>";
 					echo "<a href='new.php'>Registrazione</a>";
+					echo "<a href='contatti.php'>Contatti</a>";
 				} else {
 					if (!isset($_SESSION['ruolo'])) {
 						echo "<a href='home.php'>Home</a>";
 						echo "<a href='login.php'>Login</a>";
 						echo "<a href='new.php'>Registrazione</a>";
+						echo "<a href='contatti.php'>Contatti</a>";
 					} else {
 						if ($_SESSION['ruolo'] === "CLIENTE") {
 							echo "<a href='home.php'>Home</a>";
@@ -38,13 +40,16 @@
 							echo "<a href='listaPrenotazioniUtente.php'>Prenotazioni</a>";
 							echo "<a href='listaPremi.php'>Premi</a>";
 							echo "<a href='logout.php'>Logout</a>";
+							echo "<a href='contatti.php'>Contatti</a>";
 						}
 						if ($_SESSION['ruolo'] === "ENTE") {
 							echo "<a href='home.php'>Home</a>";
-							echo "<a href='logout.php'>Logout</a>";
 							echo "<a href='profiloEnte.php'>Profilo</a>";
 							echo "<a href='listaPrenotazioniEnte.php'>Prenotazioni</a>";
 							echo "<a href='datiIngressiEnte.php'>Affollamento</a>";
+							echo "<a href='ricercaVoucherEnte.php'>Voucher</a>";
+							echo "<a href='logout.php'>Logout</a>";
+							echo "<a href='contatti.php'>Contatti</a>";
 						}
 					}
 				}
@@ -76,7 +81,7 @@
 			 <div class="icona"></div>
 			 <div class="icona"></div>
 		</div>
-		<h1>QUIKUEUE</h1>
+		<h1>QUICKUEUE</h1>
 		<?php
 			if(!isset($_SESSION['user'])){
 			  echo "<h5 class='utenteautenticato'>GUEST</h5>";

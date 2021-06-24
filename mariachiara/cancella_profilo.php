@@ -18,7 +18,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="description" content="Accedi alla tua pagina personale per vedere i tuoi dati.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Profilo - QUIKUEUE</title>
+    <title>Profilo - QUICKUEUE</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>

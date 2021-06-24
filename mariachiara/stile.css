@@ -112,8 +112,15 @@ img{
   margin-left: auto;
   margin-right: auto;
 }
- p{
+p{
   line-height: 1.5em;
+}
+
+.alcentro{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 100%;
 }
 
 .riquadro{
@@ -138,6 +145,11 @@ img{
 .bottone:hover{
   opacity: 0.8;
 }
+
+iframe{
+	height: 100%;
+	width: 100%;
+}
 /*STILE DEI FORM*/
 .centered{
   text-align: justify;
@@ -150,7 +162,7 @@ form {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 33.33%;
+  /*width: 33.33%;*/
   text-align: center;
 }
 
@@ -279,4 +291,9 @@ table, thead, tbody {
     margin-top: 0.2em;
     margin-bottom: 0.2em;
   }
+  
+  .bottone{
+	  font-size: 0.8em;
+	  width: 50%;
+	}
 }

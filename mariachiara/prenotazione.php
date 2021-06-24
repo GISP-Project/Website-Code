@@ -15,10 +15,10 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
     <meta name="author" content="Mariachiara Mastrangelo">
-    <meta name="description" content="Prenotazione appuntamento QUIKUEUE.">
+    <meta name="description" content="Prenotazione appuntamento QUICKUEUE.">
     <meta name="keywords" content="affollamento, covid19, real-time, prenotazione">
     <link rel="icon" href="favicon.png" type="image/png" >
-    <title>Prenotazione - Quikueue</title>
+    <title>Prenotazione - Quickueue</title>
     <link rel="stylesheet" href="stile.css">
 
   </head>
@@ -41,17 +41,17 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 			echo "<h2>".$RagSocPren."</h2>";
 			echo "<h2>Seleziona data e ora di prenotazione</h2>";
 			echo '<form method="post" onsubmit="return validaPrenotazione(dtPrenotazione.value)" action="prenotazione.php">
-				  <p>
+				  <p class="alcentro">
 					  <label>Scegli data e ora della tua prenotazione</label>
 					  <input type="datetime-local" name="dtPrenotazione" id="dtPrenotazione">
 					  <input id="RagSocPren" name="RagSocPren" type="hidden" value="'.$RagSocPren.'">
 					  <input id="IdPren" name="IdPren" type="hidden" value="'.$IdPren.'">
 				  </p>';
-			echo  '<p><input type="submit" value="PRENOTA"></p>
+			echo  '<p class="alcentro"><input type="submit" value="PRENOTA"></p>
 					</form>';
 			echo "<a href='home.php' title='Home' class='bottone'>Torna home >></a>";;
         } else {
-			echo "<h2>Registrati o effettua il login per poter prenotare l'accesso agli ambienti registrati su QUIKUEUE</h2>";
+			echo "<h2>Registrati o effettua il login per poter prenotare l'accesso agli ambienti registrati su QUICKUEUE</h2>";
         }
 		
 		if (isset($_REQUEST["dtPrenotazione"])) {
@@ -83,7 +83,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 					if ($conn->query($sql) === false) {
 						echo "Error: " . $sql . "<br>" . $conn->error;
 					} else {
-						$nome_mittente = "QUIKUEUE";
+						$nome_mittente = "QUICKUEUE";
 						$mail_mittente = "marcocorvaglia@hotmail.com";
 
 						$mail_headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
@@ -95,18 +95,18 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 						$mail_corpo = "
 						<html>
 							<head>
-								<title>QUIKUEUE</title>
+								<title>QUICKUEUE</title>
 							</head>
 							<body>
 								<h1>Dati della prenotazione</h1>
-								<p>Ambiente: ".$RagSocPren."</p>
-								<p>Data/ora prenotazione: ".$_REQUEST["dtPrenotazione"]."</p>
-								<p>Codice prenotazione: ".$codicePrenotazione."</p>
+								<p class='alcentro'>Ambiente: ".$RagSocPren."</p>
+								<p class='alcentro'>Data/ora prenotazione: ".$_REQUEST["dtPrenotazione"]."</p>
+								<p class='alcentro'>Codice prenotazione: ".$codicePrenotazione."</p>
 							</body>
 						</html>
 						";		
 						$mail_destinatario = $_SESSION["user"];
-						$mail_oggetto = "QUIKUEUE - Prenotazione ingresso";
+						$mail_oggetto = "QUICKUEUE - Prenotazione ingresso";
 
 						if (mail($mail_destinatario, $mail_oggetto, $mail_corpo, $mail_headers))
 						{
