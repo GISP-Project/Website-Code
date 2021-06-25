@@ -65,13 +65,14 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 						echo "</div>";
 						
 						/*echo '
-						<div class="centrato">		
-							<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+						<div class="alcentro">		
+							<iframe class="iframe-responsive" style="border: 1px solid #cccccc;" 
 							src="https://thingspeak.com/channels/1403429/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15">
 							</iframe>
 						</div>
 						';*/
 						echo '<div class="alcentro">'.$row['iframe_thingspeak'].'</div>';
+						//echo '<iframe width="95%" height="450" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1403429/charts/1?width=auto&height=auto&bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>';
 						
 						$sql = "UPDATE tb_Ambiente SET PresenzeRealTime = '".$response->feeds[0]->field1."' WHERE emailEnte='".$_SESSION["user"]."'";
 						if ($conn->query($sql) === TRUE) {
