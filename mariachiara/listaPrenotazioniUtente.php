@@ -40,7 +40,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 				$result = $conn->query($sql);
 
                 if ($result->num_rows <= 0) {
-					echo "<p class='error'>Errore, query fallita. </p>\n";
+					echo "<p class='error'>Non sono presenti prenotazioni attive. </p>\n";
 					echo "<a href='home.php'><button class='bottone'>Back</button></a>";
                 } else {
 					echo "<h4>Hai: ".$result->num_rows." prenotazioni attive.</h4>";
