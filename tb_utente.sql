@@ -1,7 +1,7 @@
-CREATE TABLE tb_Utente (
-	email VARCHAR(100) PRIMARY KEY,
-	pwd VARCHAR(25) NOT NULL
+CREATE TABLE tb_utente (
+    email VARCHAR(100) PRIMARY KEY,
+    pwd VARCHAR(25) NOT NULL,
+    preferiti VARCHAR(100),
+    ruolo VARCHAR(25),
+    punti INT(10)
 )
-
-ALTER TABLE tb_Utente ADD COLUMN preferiti VARCHAR(100)
-ALTER TABLE tb_Utente ADD COLUMN ruolo VARCHAR(25)

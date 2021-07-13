@@ -1,35 +1,18 @@
-CREATE TABLE tb_Ambiente (
-	ID INT NOT NULL AUTO_INCREMENT,
-	RagioneSociale VARCHAR(50),
-	Indirizzo VARCHAR(50),
-	Città VARCHAR(50),
-	Provincia VARCHAR(50),
-	CAP VARCHAR(50),
-	GoogleMap VARCHAR(1000),
-	TipoAmbiente VARCHAR(50),
-	TipoAmbiente INT(10),
-	LimMaxPresenze INT(10),
+[03/07 11:06] CORVAGLIA MARCO
+    CREATE TABLE tb_ambiente (
+    ID INT NOT NULL AUTO_INCREMENT,
+    RagioneSociale VARCHAR(50),
+    Indirizzo VARCHAR(50),
+    Città VARCHAR(50),
+    Provincia VARCHAR(50),
+    CAP VARCHAR(50),
+    GoogleMap VARCHAR(1000),
+    TipoAmbiente VARCHAR(50),
+    PresenzeRealTime INT(10),
+    LimMaxPresenze INT(10),
+    emailEnte VARCHAR(100),
+    url_thingspeak VARCHAR(1000),
+    iframe_thingspeak VARCHAR(1000),
+    prenotazione VARCHAR(10),
     PRIMARY KEY (ID)
 )
-
-
-
-INSERT INTO tb_Ambiente (RagioneSociale, Indirizzo, Città, Provincia, CAP, GoogleMap, TipoAmbiente)
-VALUES ('Shopville Le Gru', 'Via Crea, 10', 'Grugliasco', 'TO', '10095', '', 'Centro Commerciale');
-
-INSERT INTO tb_Ambiente (RagioneSociale, Indirizzo, Città, Provincia, CAP, GoogleMap, TipoAmbiente)
-VALUES ('Le Fornaci Mega Shopping', 'Str. Torino, 34/36', 'Beinasco', 'TO', '10092', '', 'Centro Commerciale');
-
-INSERT INTO tb_Ambiente (RagioneSociale, Indirizzo, Città, Provincia, CAP, GoogleMap, TipoAmbiente)
-VALUES ('Le Fornaci Mega Shopping', 'Str. Torino, 34/36', 'Beinasco', 'TO', '10092', '', 'Centro Commerciale');
-
-INSERT INTO tb_Ambiente (RagioneSociale, Indirizzo, Città, Provincia, CAP, GoogleMap, TipoAmbiente)
-VALUES ('Comune di Orbassano', 'Piazza Umberto, 5', 'Orbassano', 'TO', '10043', '', 'Ufficio');
-
-
-ALTER TABLE tb_ambiente ADD COLUMN PresenzeRealTime INT(10)
-ALTER TABLE tb_ambiente ADD COLUMN LimMaxPresenze INT(10)
-ALTER TABLE tb_ambiente ADD COLUMN emailEnte VARCHAR(100)
-ALTER TABLE tb_ambiente ADD COLUMN url_thingspeak VARCHAR(1000)
-ALTER TABLE tb_ambiente ADD COLUMN iframe_thingspeak VARCHAR(1000)
-ALTER TABLE tb_ambiente ADD COLUMN prenotazione VARCHAR(10)
