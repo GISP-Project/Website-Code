@@ -84,7 +84,7 @@ elseif( session_status() !== PHP_SESSION_ACTIVE )
 						echo "Error: " . $sql . "<br>" . $conn->error;
 					} else {
 						$nome_mittente = "QUICKUEUE";
-						$mail_mittente = "marcocorvaglia@hotmail.com";
+						$mail_mittente = "server@mail.com";
 
 						$mail_headers = "From: " .  $nome_mittente . " <" .  $mail_mittente . ">\r\n";
 						$mail_headers .= "Reply-To: " .  $mail_mittente . "\r\n";
